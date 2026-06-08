@@ -1,0 +1,25 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Completions
+FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
+fpath=($HOME/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_DUPS                                           # skip duplicate commands
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # skip commands that fail

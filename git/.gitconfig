@@ -1,0 +1,12 @@
+[user]
+	name = Jirawat Yuktawathin
+	email = jirawat.y@coraline.co.th
+
+[core]
+	ignoreCase = false
+
+[includeIf "gitdir:~/personal/"]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/coraline/"]
+	path = ~/.gitconfig-coraline
