@@ -16,6 +16,8 @@ fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
+export PATH="$HOME/.local/bin:$PATH"
+
 eval "$(fnm env --use-on-cd --shell zsh)"
 
 # History

@@ -21,10 +21,11 @@ Plugins:
 
 **3. Clone and apply dotfiles**
 ```bash
-git clone git@github.com:YOUR_USERNAME/dotfiles.git ~/dotfiles
-cd ~/dotfiles
+git clone git@github.com:YOUR_USERNAME/dotfiles.git ~/personal/dotfiles
+cd ~/personal/dotfiles
+git submodule update --init
 chmod +x setup.sh
-./setup.sh
+bash setup.sh
 ```
 
 **4. Install fnm and Node** (required before opening a new shell — `.zshrc` uses it)
@@ -50,15 +51,30 @@ fnm install --lts
 | `claude/commands/` | `~/.claude/commands/` |
 | `claude/settings.json` | `~/.claude/settings.json` |
 | `claude/statusline-command.sh` | `~/.claude/statusline-command.sh` |
+| `claude/skills/*/` | `~/.claude/skills/*/` (individual symlinks) |
+| `claude/third-party/9arm-skills/skills/*/*/` | `~/.claude/skills/*/` (individual symlinks) |
 
 ## Software Engineer
 
 **Commands**
 - `create-pr` — create a pull request from current branch
 
-**Skills** (installation required)
-- [9arm-skills](https://github.com/thananon/9arm-skills) — skills for engineering, productivity, and development workflows
-- [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) — coding principles
+**Skills**
+
+Personal skills live in `claude/skills/`. Third-party skills are managed as git submodules in `claude/third-party/` — no separate installation needed, `setup.sh` links everything automatically.
+
+| Skill | Source |
+|---|---|
+| `debug-mantra` | [9arm-skills](https://github.com/thananon/9arm-skills) (submodule) |
+| `post-mortem` | [9arm-skills](https://github.com/thananon/9arm-skills) (submodule) |
+| `scrutinize` | [9arm-skills](https://github.com/thananon/9arm-skills) (submodule) |
+| `management-talk` | [9arm-skills](https://github.com/thananon/9arm-skills) (submodule) |
+| `create-pr` | personal |
+| `create-ref-sheet` | personal |
+| `create-story-board` | personal |
+
+**Plugins** (installed via Claude Code's plugin system, not managed here)
+- [andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) — coding principles
 
 ## Content Creator
 
