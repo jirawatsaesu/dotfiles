@@ -6,6 +6,9 @@
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
   },
+  "enabledPlugins": {
+    "andrej-karpathy-skills@karpathy-skills": true
+  },
   "extraKnownMarketplaces": {
     "karpathy-skills": {
       "source": {
@@ -20,8 +23,5 @@
     "mode": "hold"
   },
   "theme": "dark",
-  "voiceEnabled": true,
-  "enabledPlugins": {
-    "andrej-karpathy-skills@karpathy-skills": true
-  }
+  "voiceEnabled": true
 }
