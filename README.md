@@ -69,14 +69,7 @@ fnm install --lts
 
 **Skills** (third-party, via [9arm-skills](https://github.com/thananon/9arm-skills) submodule)
 
-Third-party skills are managed as git submodules in `claude/third-party/` — no separate installation needed, `setup.sh` links everything automatically.
-
-| Skill | Category |
-|---|---|
-| `debug-mantra` | engineering |
-| `post-mortem` | engineering |
-| `scrutinize` | engineering |
-| `management-talk` | productivity |
+Third-party skills are managed as git submodules in `claude/third-party/` — no separate installation needed, `setup.sh` links everything automatically. See the submodule repo for the full skill list.
 
 **Plugins** (installed via Claude Code's plugin system, not managed here)
 - [andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) — coding principles
