@@ -47,14 +47,10 @@ symlink "$DOTFILES/git/.gitconfig-coraline" "$HOME/.gitconfig-coraline"
 # Zsh
 symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 
-# Write statusLine to settings.local.json (machine-specific, not tracked)
-local_settings="$HOME/.claude/settings.local.json"
+# Update statusLine in settings.json for macOS
+# (settings.local.json is not honored for statusLine by Claude Code)
+settings_file="$DOTFILES/claude/settings.json"
 tmp=$(mktemp)
-if [ -f "$local_settings" ]; then
-  jq '.statusLine = {"type": "command", "command": "bash $HOME/.claude/statusline-command.sh"}' \
-    "$local_settings" > "$tmp"
-else
-  printf '{\n  "statusLine": {\n    "type": "command",\n    "command": "bash $HOME/.claude/statusline-command.sh"\n  }\n}\n' > "$tmp"
-fi
-mv "$tmp" "$local_settings"
-echo "Updated: statusLine in settings.local.json (macOS)"
+jq '.statusLine = {"type": "command", "command": "bash ~/.claude/statusline-command.sh"}' \
+  "$settings_file" > "$tmp" && mv "$tmp" "$settings_file"
+echo "Updated: statusLine in settings.json (macOS)"

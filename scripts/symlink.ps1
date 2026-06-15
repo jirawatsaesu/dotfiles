@@ -56,15 +56,11 @@ Symlink "$DOTFILES\git\.gitconfig-coraline" "$env:USERPROFILE\.gitconfig-coralin
 # PowerShell profile (Windows shell config)
 Symlink "$DOTFILES\windows\Microsoft.PowerShell_profile.ps1" $PROFILE
 
-# Write statusLine to settings.local.json (machine-specific, not tracked)
-$localSettings = "$env:USERPROFILE\.claude\settings.local.json"
-$cmd = "powershell -NoProfile -File $env:USERPROFILE\.claude\statusline-command.ps1" -replace '\\', '/'
-$statusLine = [PSCustomObject]@{ type = "command"; command = $cmd }
-if (Test-Path $localSettings) {
-  $obj = Get-Content $localSettings -Raw | ConvertFrom-Json
-  $obj | Add-Member -NotePropertyName statusLine -NotePropertyValue $statusLine -Force
-} else {
-  $obj = [PSCustomObject]@{ statusLine = $statusLine }
-}
-[System.IO.File]::WriteAllText($localSettings, ($obj | ConvertTo-Json -Depth 10), [System.Text.UTF8Encoding]::new($false))
-Write-Host "Updated: statusLine in settings.local.json (Windows)"
+# Update statusLine in settings.json for Windows
+# (settings.local.json is not honored for statusLine by Claude Code)
+$settingsFile = "$DOTFILES\claude\settings.json"
+$cmd = "powershell -NoProfile -File ~/.claude/statusline-command.ps1"
+$content = Get-Content $settingsFile -Raw
+$content = $content -replace '("command":\s*")[^"]*statusline-command[^"]*"', "`${1}$cmd`""
+[System.IO.File]::WriteAllText($settingsFile, $content, [System.Text.UTF8Encoding]::new($false))
+Write-Host "Updated: statusLine in settings.json (Windows)"
