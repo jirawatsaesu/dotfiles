@@ -29,6 +29,8 @@ bash setup.sh
 ```
 
 **4. Install fnm and Node** (required before opening a new shell — `.zshrc` uses it)
+
+[fnm](https://github.com/Schniz/fnm) is a fast Node.js version manager (like nvm, but faster).
 ```bash
 brew install fnm
 fnm install --lts
@@ -78,6 +80,8 @@ git submodule update --init
 | `zsh/.zshrc` | `~/.zshrc` | macOS |
 | `windows/Microsoft.PowerShell_profile.ps1` | `$PROFILE` | Windows |
 | `git/.gitconfig` | `~/.gitconfig` | both |
+| `git/.gitconfig-personal` | `~/.gitconfig-personal` | both |
+| `git/.gitconfig-coraline` | `~/.gitconfig-coraline` | both |
 
 **Claude Code**
 | File | Symlinked to | Platform |
@@ -91,10 +95,14 @@ git submodule update --init
 
 ## Software Engineer
 
-**Commands**
-- `create-pr` — create a pull request from current branch
+**Commands** (`claude/commands/eng/`)
+- `eng:create-pr` — create a pull request from current branch
+- `eng:create-ticket` — create a ClickUp task in the current sprint
+- `eng:daily-report` — generate a daily meeting report from ClickUp time entries
+- `eng:weekly-report` — generate a weekly engineer report from ClickUp time entries
+- `eng:monthly-report` — generate a monthly C-level report from ClickUp time entries
 
-**Skills**
+**Skills** (third-party, via [9arm-skills](https://github.com/thananon/9arm-skills) submodule)
 
 Personal skills live in `claude/skills/`. Third-party skills are managed as git submodules in `claude/third-party/` — no separate installation needed, `setup.sh` (macOS) or `setup.ps1` (Windows) links everything automatically.
 
@@ -113,6 +121,6 @@ Personal skills live in `claude/skills/`. Third-party skills are managed as git 
 
 ## Content Creator
 
-**Commands**
-- `create-ref-sheet` — generate a design concept sheet prompt for AI video preproduction
-- `create-story-board` — generate storyboard prompts for AI video production
+**Commands** (`claude/commands/creator/`)
+- `creator:create-ref-sheet` — generate a design concept sheet prompt for AI video preproduction
+- `creator:create-story-board` — generate storyboard prompts for AI video production
