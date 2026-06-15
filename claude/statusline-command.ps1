@@ -1,3 +1,4 @@
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $input_text = $input | Out-String
 $data = $input_text | ConvertFrom-Json
 

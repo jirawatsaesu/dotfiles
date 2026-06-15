@@ -46,3 +46,10 @@ symlink "$DOTFILES/git/.gitconfig-coraline" "$HOME/.gitconfig-coraline"
 
 # Zsh
 symlink "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+
+# Update statusLine in settings.json for macOS
+settings_file="$DOTFILES/claude/settings.json"
+tmp=$(mktemp)
+jq '.statusLine = {"type": "command", "command": "bash $HOME/.claude/statusline-command.sh"}' \
+  "$settings_file" > "$tmp" && mv "$tmp" "$settings_file"
+echo "Updated: statusLine in settings.json (macOS)"

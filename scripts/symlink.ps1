@@ -56,3 +56,15 @@ Symlink "$DOTFILES\git\.gitconfig-coraline" "$env:USERPROFILE\.gitconfig-coralin
 # PowerShell profile (Windows shell config)
 $profileDir = Split-Path $PROFILE
 Symlink "$DOTFILES\windows\Microsoft.PowerShell_profile.ps1" $PROFILE
+
+# Update statusLine command in settings.json for this Windows machine
+$settingsFile = "$DOTFILES\claude\settings.json"
+$cmd = "powershell -NoProfile -File $env:USERPROFILE\.claude\statusline-command.ps1".Replace("\", "/")
+$content = Get-Content $settingsFile -Raw
+if ($content -match '"statusLine"') {
+  $content = $content -replace '(?<="command":\s*")[^"]*statusline-command[^"]*"', "$cmd`""
+} else {
+  $content = $content -replace '^\{', "{`n  `"statusLine`": {`n    `"type`": `"command`",`n    `"command`": `"$cmd`"`n  },"
+}
+[System.IO.File]::WriteAllText($settingsFile, $content, [System.Text.UTF8Encoding]::new($false))
+Write-Host "Updated: statusLine in settings.json (Windows)"
