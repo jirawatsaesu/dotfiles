@@ -54,17 +54,17 @@ Symlink "$DOTFILES\git\.gitconfig-personal" "$env:USERPROFILE\.gitconfig-persona
 Symlink "$DOTFILES\git\.gitconfig-coraline" "$env:USERPROFILE\.gitconfig-coraline"
 
 # PowerShell profile (Windows shell config)
-$profileDir = Split-Path $PROFILE
 Symlink "$DOTFILES\windows\Microsoft.PowerShell_profile.ps1" $PROFILE
 
-# Update statusLine command in settings.json for this Windows machine
-$settingsFile = "$DOTFILES\claude\settings.json"
-$cmd = "powershell -NoProfile -File $env:USERPROFILE\.claude\statusline-command.ps1".Replace("\", "/")
-$content = Get-Content $settingsFile -Raw
-if ($content -match '"statusLine"') {
-  $content = $content -replace '(?<="command":\s*")[^"]*statusline-command[^"]*"', "$cmd`""
+# Write statusLine to settings.local.json (machine-specific, not tracked)
+$localSettings = "$env:USERPROFILE\.claude\settings.local.json"
+$cmd = "powershell -NoProfile -File $env:USERPROFILE\.claude\statusline-command.ps1" -replace '\\', '/'
+$statusLine = [PSCustomObject]@{ type = "command"; command = $cmd }
+if (Test-Path $localSettings) {
+  $obj = Get-Content $localSettings -Raw | ConvertFrom-Json
+  $obj | Add-Member -NotePropertyName statusLine -NotePropertyValue $statusLine -Force
 } else {
-  $content = $content -replace '^\{', "{`n  `"statusLine`": {`n    `"type`": `"command`",`n    `"command`": `"$cmd`"`n  },"
+  $obj = [PSCustomObject]@{ statusLine = $statusLine }
 }
-[System.IO.File]::WriteAllText($settingsFile, $content, [System.Text.UTF8Encoding]::new($false))
-Write-Host "Updated: statusLine in settings.json (Windows)"
+[System.IO.File]::WriteAllText($localSettings, ($obj | ConvertTo-Json -Depth 10), [System.Text.UTF8Encoding]::new($false))
+Write-Host "Updated: statusLine in settings.local.json (Windows)"

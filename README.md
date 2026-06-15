@@ -62,15 +62,7 @@ git submodule update --init
 **3. Set secrets in `~/.claude/settings.json`**
 - Replace `YOUR_FIGMA_TOKEN_HERE` with your actual Figma token
 
-**No Git Bash / bash not in PATH?** The statusline falls back gracefully (blank). To use the PowerShell statusline instead, create `~/.claude/settings.local.json`:
-```json
-{
-  "statusLine": {
-    "type": "command",
-    "command": "powershell -File $env:USERPROFILE\\.claude\\statusline-command.ps1"
-  }
-}
-```
+`setup.ps1` writes a machine-local `~/.claude/settings.local.json` with the PowerShell statusline path automatically — no manual configuration needed.
 
 ## What's included
 

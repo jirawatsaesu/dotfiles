@@ -1,5 +1,6 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $input_text = $input | Out-String
+if (-not $input_text.Trim()) { exit 0 }
 $data = $input_text | ConvertFrom-Json
 
 function Make-Bar($pct) {
