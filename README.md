@@ -13,7 +13,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply jirawatsaesu/dotfiles
 **Windows**
 
 ```powershell
-(irm -Uri https://get.chezmoi.io/ps1) | powershell -c -; chezmoi init --apply jirawatsaesu/dotfiles
+(irm -Uri "https://get.chezmoi.io/ps1") | powershell -c - -- init --apply jirawatsaesu/dotfiles
 ```
 
 After setup, replace `YOUR_FIGMA_TOKEN_HERE` in `~/.claude/settings.json` with your actual token.
