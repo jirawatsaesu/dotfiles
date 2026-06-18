@@ -1,0 +1,21 @@
+# repo-only files (not deployed)
+README.md
+CLAUDE.md
+.gitmodules
+.gitattributes
+
+# macOS only
+{{ if ne .chezmoi.os "darwin" }}
+dot_zshrc
+{{ end }}
+
+# Windows only
+{{ if ne .chezmoi.os "windows" }}
+Documents
+dot_claude/statusline-command.ps1
+{{ end }}
+
+# macOS only
+{{ if ne .chezmoi.os "darwin" }}
+dot_claude/executable_statusline-command.sh
+{{ end }}

@@ -4,7 +4,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "powershell -NoProfile -File ~/.claude/statusline-command.ps1"
+    "command": "{{ if eq .chezmoi.os "windows" }}powershell -NoProfile -File ~/.claude/statusline-command.ps1{{ else }}bash ~/.claude/statusline-command.sh{{ end }}"
   },
   "enabledPlugins": {
     "andrej-karpathy-skills@karpathy-skills": true

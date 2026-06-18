@@ -1,3 +1,0 @@
-[submodule "claude/third-party/9arm-skills"]
-	path = claude/third-party/9arm-skills
-	url = https://github.com/thananon/9arm-skills.git
