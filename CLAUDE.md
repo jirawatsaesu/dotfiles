@@ -26,7 +26,8 @@ Chezmoi source root is `configs/` (set via `.chezmoiroot`).
 
 - `dot_` prefix → deployed with `.` prefix (e.g. `dot_zshrc` → `~/.zshrc`)
 - `.tmpl` extension → Go template, processed before deployment
-- `.chezmoiignore` → files not deployed (README.md, CLAUDE.md, etc.)
+- `.chezmoiignore` → files not deployed (README.md, CLAUDE.md, etc.). Patterns match the **target** path (post `dot_`/`executable_`/`.tmpl` transformation), not the source path — e.g. `.claude/statusline-command.ps1`, not `dot_claude/statusline-command.ps1`
+- `.chezmoiscripts/run_once_*.sh.tmpl` / `.ps1.tmpl` → scripts chezmoi runs once during `apply`; matched against `.chezmoiignore` using the target name with `run_once_` and `.tmpl` stripped (e.g. `.chezmoiscripts/setup.sh`)
 
 ## Common Commands
 
@@ -53,9 +54,7 @@ chezmoi apply
 
 ## Bootstrap
 
-One-line installation scripts live in `setup/`:
-- `setup/macos.sh` — installs Homebrew, dependencies, then `chezmoi init --apply`
-- `setup/windows.ps1` — installs winget packages, then `chezmoi init --apply`
+`setup/macos.sh` and `setup/windows.ps1` install prerequisites (Homebrew/winget packages, fnm, Node). They are invoked automatically per-OS by `configs/.chezmoiscripts/run_once_setup.sh.tmpl` / `run_once_setup.ps1.tmpl` during `chezmoi apply` — no manual step needed after `chezmoi init --apply`.
 
 ## Platform Support
 

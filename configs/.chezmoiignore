@@ -6,16 +6,18 @@ CLAUDE.md
 
 # macOS only
 {{ if ne .chezmoi.os "darwin" }}
-dot_zshrc
+.zshrc
 {{ end }}
 
 # Windows only
 {{ if ne .chezmoi.os "windows" }}
 Documents
-dot_claude/statusline-command.ps1
+.claude/statusline-command.ps1
+.chezmoiscripts/setup.ps1
 {{ end }}
 
 # macOS only
 {{ if ne .chezmoi.os "darwin" }}
-dot_claude/executable_statusline-command.sh
+.claude/statusline-command.sh
+.chezmoiscripts/setup.sh
 {{ end }}
