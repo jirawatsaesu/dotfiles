@@ -2,9 +2,9 @@
 set -e
 
 if ! command -v brew &>/dev/null; then
-  echo "🟣 installing homebrew."
+  echo "[*] installing homebrew."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo "✅ homebrew installed!"
+  echo "[ok] homebrew installed!"
 else
-  echo "ℹ️ homebrew is installed."
+  echo "[i] homebrew is installed."
 fi
