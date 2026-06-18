@@ -6,58 +6,46 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal dotfiles repository managed by [Chezmoi](https://www.chezmoi.io). Contains configuration for shell, git, and Claude Code across macOS and Windows.
 
-## Directory Structure
+## Key Architecture
+
+### Directory Structure
 
 Chezmoi source root is `configs/` (set via `.chezmoiroot`).
 
-- `configs/dot_claude/` → `~/.claude/`
-  - `CLAUDE.md` — global Claude Code preferences
-  - `settings.json.tmpl` — platform-specific settings (statusLine injected via template)
-  - `statusline-command.sh` — statusline script (macOS)
-  - `statusline-command.ps1` — statusline script (Windows)
-  - `commands/` → `~/.claude/commands/`
-- `configs/dot_gitconfig` → `~/.gitconfig`
-- `configs/dot_gitconfig-personal` → `~/.gitconfig-personal`
-- `configs/dot_gitconfig-coraline` → `~/.gitconfig-coraline`
+- `configs/dot_claude/` → `~/.claude/` — Claude Code config, commands, statusline scripts
+- `configs/dot_gitconfig*` → `~/.gitconfig*`
 - `configs/dot_zshrc` → `~/.zshrc` (macOS only)
-- `configs/Documents/PowerShell/Microsoft.PowerShell_profile.ps1` → `~/Documents/PowerShell/...` (Windows only)
-
-## Chezmoi Conventions
-
-- `dot_` prefix → deployed with `.` prefix (e.g. `dot_zshrc` → `~/.zshrc`)
-- `.tmpl` extension → Go template, processed before deployment
-- `.chezmoiignore` → files not deployed (README.md, CLAUDE.md, etc.). Patterns match the **target** path (post `dot_`/`executable_`/`.tmpl` transformation), not the source path — e.g. `.claude/statusline-command.ps1`, not `dot_claude/statusline-command.ps1`
-- `.chezmoiscripts/run_once_*.sh.tmpl` / `.ps1.tmpl` → scripts chezmoi runs once during `apply`; matched against `.chezmoiignore` using the target name with `run_once_` and `.tmpl` stripped (e.g. `.chezmoiscripts/setup.sh`)
+- `configs/Documents/` → `~/Documents/` (Windows only)
+- `setup/` - Bootstrap and installation scripts
 
 ## Common Commands
 
-```bash
-# Apply all dotfiles
-chezmoi apply
+### Setup and Bootstrap
 
-# Preview what would change
-chezmoi diff
+- Scripts in `setup/` directory handle installation and configuration
+- `setup/macos/` contains macOS-specific setup
+- `setup/windows/` contains Windows-specific setup
+- `setup/shared/` contains cross-platform setup scripts
 
-# Check what's out of sync
-chezmoi status
+## Chezmoi Conventions
 
-# Re-apply after editing a source file
-chezmoi apply
-```
+Only two conventions are actually used in this repo (do not assume others, e.g. `private_`/`symlink_`/`executable_` — unused):
+
+- `dot_` prefix → deployed with `.` prefix (e.g. `dot_zshrc` → `~/.zshrc`)
+- `.tmpl` extension → Go template, processed before deployment
+- `.chezmoiignore` patterns match the **target** path (post `dot_`/`.tmpl` transformation), not the source path — e.g. `.claude/statusline-command.ps1`, not `dot_claude/statusline-command.ps1`
 
 ## Development Workflow
 
-1. Edit source files in `configs/` directly
-2. Run `chezmoi apply` to deploy changes
-3. Platform-specific content lives in `settings.json.tmpl` — use `{{ if eq .chezmoi.os "windows" }}` for branching
-4. Files not meant to be deployed (README.md, CLAUDE.md, .gitmodules) are listed in `configs/.chezmoiignore`
+When working with this repository:
 
-## Bootstrap
+1. Configuration changes should be made to the source files in this repository
+2. Use `chezmoi apply` to apply changes to the actual dotfiles
+3. Test changes in the appropriate environment before committing
+4. `Dockerfile` tests templating/`.chezmoiignore` only — not a substitute for a real macOS/Windows test
 
-`setup/macos.sh` and `setup/windows.ps1` install prerequisites (Homebrew/winget packages, fnm, Node). They are invoked automatically per-OS by `configs/.chezmoiscripts/run_once_setup.sh.tmpl` / `run_once_setup.ps1.tmpl` during `chezmoi apply` — no manual step needed after `chezmoi init --apply`.
+## Important Notes
 
-## Platform Support
-
-- **macOS**: zsh + Powerlevel10k, Claude statusline via bash script
-- **Windows**: PowerShell profile, Claude statusline via PS1 script
-- Shared: git config, Claude Code settings/commands
+- This is a personal configuration repository - modifications should respect the owner's preferences
+- Always keep macOS and Windows in sync: most platform pairs are the same filename, different extension (`.sh` ↔ `.ps1`). Editing one means editing its counterpart in the same commit — except `settings.json.tmpl`, which branches with `{{ if eq .chezmoi.os "windows" }}` instead of having a separate file
+- `.chezmoiignore` platform blocks — if you add an entry for one OS, add the mirrored exclusion for the other

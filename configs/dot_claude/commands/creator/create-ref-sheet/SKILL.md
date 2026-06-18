@@ -6,7 +6,7 @@ description: >
   character design, production design, GPT Image, AI film preproduction, campaign board,
   character turnaround, or asks for a prompt to generate a preproduction reference image.
   This skill covers Stage 1 of the AI video pipeline only — generating and modifying the
-  Design Sheet prompt. For storyboard prompts, use the create-story-board skill.
+  Design Sheet prompt. For storyboard prompts, use the create-storyboard skill.
 ---
 
 # Create Reference Sheet

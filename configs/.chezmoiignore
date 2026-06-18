@@ -1,9 +1,3 @@
-# repo-only files (not deployed)
-README.md
-CLAUDE.md
-.gitmodules
-.gitattributes
-
 # macOS only
 {{ if ne .chezmoi.os "darwin" }}
 .zshrc

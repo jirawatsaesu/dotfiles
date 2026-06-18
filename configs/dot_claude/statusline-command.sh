@@ -47,18 +47,9 @@ home_dir="$HOME"
 cwd_display=$(basename "$raw_cwd")
 ctx_used=$(echo "$input"    | jq -r '.context_window.used_percentage // empty')
 
-# Account email: read from cache file written by `claude whoami` or set manually.
-# Cache file: ~/.claude/.account-cache  (single line: the email address)
-account_cache="$HOME/.claude/.account-cache"
-account_email=""
-if [ -f "$account_cache" ]; then
-  account_email=$(cat "$account_cache")
-fi
-
-# Line 1: account | model | effort | cwd
+# Line 1: model | effort | cwd
 line1=""
-[ -n "$account_email" ] && line1="$account_email"
-[ -n "$model_name" ] && { [ -n "$line1" ] && line1="${line1} | "; line1="${line1}${model_name}"; }
+[ -n "$model_name" ] && line1="${model_name}"
 [ -n "$effort" ] && line1="${line1} | ${effort}"
 [ -n "$cwd_display" ] && line1="${line1} | ${cwd_display}"
 [ -n "$line1" ] && printf "%s\n" "$line1"

@@ -28,10 +28,23 @@ After setup, replace `YOUR_FIGMA_TOKEN_HERE` in `~/.claude/settings.json` with y
 | `dot_gitconfig-personal` | `~/.gitconfig-personal` | both |
 | `dot_gitconfig-coraline` | `~/.gitconfig-coraline` | both |
 | `dot_claude/settings.json.tmpl` | `~/.claude/settings.json` | both |
-| `dot_claude/executable_statusline-command.sh` | `~/.claude/statusline-command.sh` | macOS |
+| `dot_claude/statusline-command.sh` | `~/.claude/statusline-command.sh` | macOS |
 | `dot_claude/statusline-command.ps1` | `~/.claude/statusline-command.ps1` | Windows |
-| `dot_claude/exact_commands/` | `~/.claude/commands/` | both |
+| `dot_claude/commands/` | `~/.claude/commands/` | both |
 | `dot_claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | both |
+
+## Testing in isolation
+
+A `Dockerfile` lets you test chezmoi's file deployment (templating, `.chezmoiignore` rules, naming conventions) without touching a real machine:
+
+```bash
+docker build -t dotfiles-test .
+docker run --rm -it dotfiles-test
+```
+
+This runs `chezmoi apply` inside a throwaway Linux container and drops you into a shell to inspect the result (`cat ~/.gitconfig`, `ls ~/.claude`, etc).
+
+**Scope**: since this repo only targets macOS and Windows, Linux falls into neither platform branch — `.zshrc` and `statusline-command.sh`/`.ps1` won't deploy, and the bootstrap scripts under `setup/` won't run. This only verifies the platform-agnostic pieces (git config, Claude commands, `CLAUDE.md`, the rendered `settings.json`) actually template and land correctly — it's not a substitute for testing on a real macOS or Windows machine.
 
 ## Tools
 
@@ -53,8 +66,10 @@ After setup, replace `YOUR_FIGMA_TOKEN_HERE` in `~/.claude/settings.json` with y
 
 **Content Creator**
 - `/creator:create-ref-sheet` — design concept sheet prompt for AI video preproduction
-- `/creator:create-story-board` — storyboard prompts for AI video production
+- `/creator:create-storyboard` — storyboard prompts for AI video production
 
 **Plugins** (installed via Claude Code marketplace)
 - [andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) — coding principles
-- [9arm-skills](https://github.com/thananon/9arm-skills) — debug-mantra, scrutinize, post-mortem, management-talk
+
+**Third-party skills** (installed via `npx skills add`, see `setup/shared/02-install-9arm-skills.sh`)
+- [9arm-skills](https://github.com/thananon/9arm-skills) — debug-mantra, scrutinize, post-mortem (selected subset of the repo's 6 skills)

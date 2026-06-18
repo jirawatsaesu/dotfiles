@@ -1,5 +1,5 @@
 ---
-name: create-story-board
+name: create-storyboard
 description: >
   Use this skill when a user wants to generate storyboard prompts for AI video production.
   Trigger when the user mentions: storyboard, story board, Seedance, AI video prompts,

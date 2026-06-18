@@ -25,7 +25,7 @@ Personal preferences for Claude Code across all projects.
 
 **Content Creator** (`/creator:*`)
 - `/creator:create-ref-sheet` — design concept sheet prompt for AI video preproduction (Stage 1)
-- `/creator:create-story-board` — storyboard prompts for AI video production (Stage 2)
+- `/creator:create-storyboard` — storyboard prompts for AI video production (Stage 2)
 
 ## Preferences
 
