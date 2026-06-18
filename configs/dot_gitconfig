@@ -3,6 +3,16 @@
 
 [core]
 	ignoreCase = false
+	excludesFile = ~/.gitignore_global
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[init]
+	defaultBranch = main
 
 [includeIf "gitdir:~/personal/"]
 	path = ~/.gitconfig-personal

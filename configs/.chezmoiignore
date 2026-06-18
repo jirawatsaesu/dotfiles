@@ -1,6 +1,9 @@
 # macOS only
 {{ if ne .chezmoi.os "darwin" }}
 .zshrc
+.p10k.zsh
+.claude/statusline-command.sh
+.chezmoiscripts/setup.sh
 {{ end }}
 
 # Windows only
@@ -8,10 +11,4 @@
 Documents
 .claude/statusline-command.ps1
 .chezmoiscripts/setup.ps1
-{{ end }}
-
-# macOS only
-{{ if ne .chezmoi.os "darwin" }}
-.claude/statusline-command.sh
-.chezmoiscripts/setup.sh
 {{ end }}

@@ -1,4 +1,39 @@
-brew "fnm"
+# Shell
 brew "powerlevel10k"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+
+# Version managers
+brew "fnm"
+brew "chezmoi"
+
+# Git
+brew "git"
+brew "gh"
+
+# Utilities
+brew "wget"
+
+# Dev tools
+cask "visual-studio-code"
+cask "docker"
+cask "postman"
+cask "fork"            # Git GUI
+cask "tableplus"
+cask "dbeaver-community"
+
+# AI
+cask "claude"
+
+# Productivity
+cask "google-chrome"
+cask "google-drive"
+cask "slack"
+cask "discord"
+cask "gather"
+cask "clickup"
+cask "figma"
+
+# System utilities
+cask "scroll-reverser"
+cask "jordanbaird-ice" # menu bar manager
