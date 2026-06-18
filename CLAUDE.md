@@ -8,25 +8,25 @@ Personal dotfiles repository managed by [Chezmoi](https://www.chezmoi.io). Conta
 
 ## Directory Structure
 
-- `dot_claude/` — Claude Code config, deployed to `~/.claude/`
-  - `CLAUDE.md` — global Claude Code preferences (deployed to `~/.claude/CLAUDE.md`)
-  - `settings.json.tmpl` — Claude Code settings with platform-specific statusLine
-  - `executable_statusline-command.sh` — statusline script (macOS)
+Chezmoi source root is `configs/` (set via `.chezmoiroot`).
+
+- `configs/dot_claude/` → `~/.claude/`
+  - `CLAUDE.md` — global Claude Code preferences
+  - `settings.json.tmpl` — platform-specific settings (statusLine injected via template)
+  - `statusline-command.sh` — statusline script (macOS)
   - `statusline-command.ps1` — statusline script (Windows)
-  - `exact_commands/` — custom skills, deployed to `~/.claude/commands/`
-- `dot_gitconfig` → `~/.gitconfig`
-- `dot_gitconfig-personal` → `~/.gitconfig-personal`
-- `dot_gitconfig-coraline` → `~/.gitconfig-coraline`
-- `dot_zshrc` → `~/.zshrc` (macOS only)
-- `Documents/PowerShell/Microsoft.PowerShell_profile.ps1` → `~/Documents/PowerShell/...` (Windows only)
-- `.chezmoiignore` — platform-specific file exclusions
+  - `commands/` → `~/.claude/commands/`
+- `configs/dot_gitconfig` → `~/.gitconfig`
+- `configs/dot_gitconfig-personal` → `~/.gitconfig-personal`
+- `configs/dot_gitconfig-coraline` → `~/.gitconfig-coraline`
+- `configs/dot_zshrc` → `~/.zshrc` (macOS only)
+- `configs/Documents/PowerShell/Microsoft.PowerShell_profile.ps1` → `~/Documents/PowerShell/...` (Windows only)
 
 ## Chezmoi Conventions
 
-- `dot_` prefix → files/dirs starting with `.` (e.g. `dot_zshrc` → `~/.zshrc`)
-- `executable_` prefix → file is deployed with execute permission
-- `exact_` prefix → target directory is managed exactly (extra files are removed)
-- `.tmpl` extension → file is a Go template, processed before deployment
+- `dot_` prefix → deployed with `.` prefix (e.g. `dot_zshrc` → `~/.zshrc`)
+- `.tmpl` extension → Go template, processed before deployment
+- `.chezmoiignore` → files not deployed (README.md, CLAUDE.md, etc.)
 
 ## Common Commands
 
@@ -46,10 +46,16 @@ chezmoi apply
 
 ## Development Workflow
 
-1. Edit source files in this repo directly
+1. Edit source files in `configs/` directly
 2. Run `chezmoi apply` to deploy changes
 3. Platform-specific content lives in `settings.json.tmpl` — use `{{ if eq .chezmoi.os "windows" }}` for branching
-4. Files not meant to be deployed (README.md, CLAUDE.md, .gitmodules) are listed in `.chezmoiignore`
+4. Files not meant to be deployed (README.md, CLAUDE.md, .gitmodules) are listed in `configs/.chezmoiignore`
+
+## Bootstrap
+
+One-line installation scripts live in `setup/`:
+- `setup/macos.sh` — installs Homebrew, dependencies, then `chezmoi init --apply`
+- `setup/windows.ps1` — installs winget packages, then `chezmoi init --apply`
 
 ## Platform Support
 

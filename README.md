@@ -7,36 +7,13 @@ Personal config for shell, git, and Claude Code — managed with [Chezmoi](https
 **macOS**
 
 ```bash
-# 1. Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homebrew/install/HEAD/install.sh)"
-
-# 2. Install Chezmoi
-brew install chezmoi
-
-# 3. Install zsh plugins
-brew install powerlevel10k zsh-autosuggestions zsh-syntax-highlighting
-
-# 4. Install fnm and Node (required by .zshrc)
-brew install fnm && fnm install --lts
-
-# 5. Apply dotfiles
-chezmoi init --source ~/personal/dotfiles
-chezmoi apply
+bash <(curl -fsSL https://raw.githubusercontent.com/jirawatsaesu/dotfiles/main/setup/macos.sh)
 ```
 
 **Windows**
 
 ```powershell
-# 1. Install Chezmoi
-winget install twpayne.chezmoi
-
-# 2. Install fnm and Node
-winget install Schniz.fnm
-fnm install --lts
-
-# 3. Apply dotfiles
-chezmoi init --source $env:USERPROFILE\personal\dotfiles
-chezmoi apply
+irm https://raw.githubusercontent.com/jirawatsaesu/dotfiles/main/setup/windows.ps1 | iex
 ```
 
 After setup, replace `YOUR_FIGMA_TOKEN_HERE` in `~/.claude/settings.json` with your actual token.
