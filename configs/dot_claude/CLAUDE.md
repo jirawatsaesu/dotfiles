@@ -17,6 +17,8 @@ Personal preferences for Claude Code across all projects.
 ## Custom Skills
 
 **Engineering** (`/eng:*`)
+
+- `/eng:commit` — create a conventional commit; analyzes diff, detects logical splits, stages files if needed
 - `/eng:create-pr` — create a Bitbucket pull request from current branch
 - `/eng:create-ticket` — create a ClickUp task in the current AutoGov sprint
 - `/eng:daily-report` — daily meeting report from ClickUp time entries
@@ -24,6 +26,7 @@ Personal preferences for Claude Code across all projects.
 - `/eng:monthly-report` — monthly C-level report from ClickUp time entries
 
 **Content Creator** (`/creator:*`)
+
 - `/creator:create-ref-sheet` — design concept sheet prompt for AI video preproduction (Stage 1)
 - `/creator:create-storyboard` — storyboard prompts for AI video production (Stage 2)
 
