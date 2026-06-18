@@ -12,8 +12,16 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply jirawatsaesu/dotfiles
 
 **Windows**
 
+1. Install chezmoi (adds it to PATH automatically):
+
 ```powershell
-(irm -Uri "https://get.chezmoi.io/ps1") | powershell -c - -- init --apply jirawatsaesu/dotfiles
+winget install twpayne.chezmoi
+```
+
+2. Clone and apply dotfiles:
+
+```powershell
+chezmoi init --apply jirawatsaesu/dotfiles
 ```
 
 After setup, replace `YOUR_FIGMA_TOKEN_HERE` in `~/.claude/settings.json` with your actual token.
