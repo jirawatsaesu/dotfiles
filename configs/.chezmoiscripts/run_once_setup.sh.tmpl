@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+{{ if eq .chezmoi.os "darwin" -}}
+bash "{{ .chezmoi.sourceDir }}/../setup/macos.sh"
+{{ end -}}

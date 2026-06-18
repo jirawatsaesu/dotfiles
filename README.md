@@ -7,13 +7,13 @@ Personal config for shell, git, and Claude Code — managed with [Chezmoi](https
 **macOS**
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/jirawatsaesu/dotfiles/main/setup/macos.sh)
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply jirawatsaesu/dotfiles
 ```
 
 **Windows**
 
 ```powershell
-irm https://raw.githubusercontent.com/jirawatsaesu/dotfiles/main/setup/windows.ps1 | iex
+(irm -Uri https://get.chezmoi.io/ps1) | powershell -c -; chezmoi init --apply jirawatsaesu/dotfiles
 ```
 
 After setup, replace `YOUR_FIGMA_TOKEN_HERE` in `~/.claude/settings.json` with your actual token.
