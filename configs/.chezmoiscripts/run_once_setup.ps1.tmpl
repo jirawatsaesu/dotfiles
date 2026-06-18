@@ -1,3 +1,14 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
-& "{{ .chezmoi.sourceDir }}\..\setup\windows.ps1"
+
+Set-Location "{{ .chezmoi.sourceDir }}\..\setup"
+
+function Run-SetupDir($dir) {
+  Get-ChildItem -Path $dir -Filter "*.ps1" -ErrorAction SilentlyContinue | Sort-Object Name | ForEach-Object {
+    Write-Host "▶ $($_.FullName)"
+    & $_.FullName
+  }
+}
+
+Run-SetupDir "windows"
+Run-SetupDir "shared"

@@ -1,3 +1,15 @@
 #!/bin/bash
 set -e
-bash "{{ .chezmoi.sourceDir }}/../setup/macos.sh"
+
+cd "{{ .chezmoi.sourceDir }}/../setup"
+
+run_setup_dir() {
+  for script in "$1"/*.sh; do
+    [ -e "$script" ] || continue
+    echo "▶ $script"
+    bash "$script"
+  done
+}
+
+run_setup_dir "macos"
+run_setup_dir "shared"

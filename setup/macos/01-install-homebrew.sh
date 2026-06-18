@@ -2,9 +2,9 @@
 set -e
 
 if ! command -v brew &>/dev/null; then
+  echo "🟣 installing homebrew."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "✅ homebrew installed!"
+else
+  echo "ℹ️ homebrew is installed."
 fi
-
-brew install fnm powerlevel10k zsh-autosuggestions zsh-syntax-highlighting
-
-fnm install --lts
