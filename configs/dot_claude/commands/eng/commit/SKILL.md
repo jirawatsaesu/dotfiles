@@ -37,6 +37,7 @@ Create well-formatted git commits following conventional commit standards.
 | perf | Performance improvements |
 | test | Adding or modifying tests |
 | chore | Maintenance tasks |
+| ci | CI pipeline and Docker changes |
 
 ## Atomic Commits
 
