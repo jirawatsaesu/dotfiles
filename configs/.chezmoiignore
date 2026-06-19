@@ -3,6 +3,7 @@
 .zshrc
 .p10k.zsh
 .claude/statusline-command.sh
+.claude/cpm.zsh
 .chezmoiscripts/setup.sh
 {{ end }}
 
@@ -10,5 +11,6 @@
 {{ if ne .chezmoi.os "windows" }}
 Documents
 .claude/statusline-command.ps1
+.claude/cpm.ps1
 .chezmoiscripts/setup.ps1
 {{ end }}

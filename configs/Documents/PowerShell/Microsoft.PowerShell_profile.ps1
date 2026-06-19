@@ -9,3 +9,5 @@ $env:PATH = "$env:USERPROFILE\.local\bin;$env:PATH"
 # History
 Set-PSReadLineOption -MaximumHistoryCount 10000
 Set-PSReadLineOption -HistoryNoDuplicates:$true
+
+. "$HOME\.claude\cpm.ps1"

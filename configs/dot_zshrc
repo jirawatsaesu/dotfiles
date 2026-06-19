@@ -25,3 +25,5 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt HIST_IGNORE_DUPS                                           # skip duplicate commands
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 } # skip commands that fail
+
+source ~/.claude/cpm.zsh
