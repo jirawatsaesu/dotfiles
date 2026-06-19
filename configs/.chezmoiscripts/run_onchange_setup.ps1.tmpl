@@ -1,3 +1,4 @@
+# setup hash: {{ $files := list }}{{ $files = concat $files (glob (joinPath .chezmoi.sourceDir "../setup/windows/*.ps1")) }}{{ $files = concat $files (glob (joinPath .chezmoi.sourceDir "../setup/shared/*.ps1")) }}{{ $content := "" }}{{ range $files }}{{ $content = print $content (include .) }}{{ end }}{{ $content | sha256sum }}
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 

@@ -1,0 +1,16 @@
+#!/bin/bash
+# setup hash: {{ $files := list }}{{ $files = concat $files (glob (joinPath .chezmoi.sourceDir "../setup/macos/*.sh")) }}{{ $files = concat $files (list (joinPath .chezmoi.sourceDir "../setup/macos/Brewfile")) }}{{ $files = concat $files (glob (joinPath .chezmoi.sourceDir "../setup/shared/*.sh")) }}{{ $content := "" }}{{ range $files }}{{ $content = print $content (include .) }}{{ end }}{{ $content | sha256sum }}
+set -e
+
+cd "{{ .chezmoi.sourceDir }}/../setup"
+
+run_setup_dir() {
+  for script in "$1"/*.sh; do
+    [ -e "$script" ] || continue
+    echo "▶ $script"
+    bash "$script"
+  done
+}
+
+run_setup_dir "macos"
+run_setup_dir "shared"
