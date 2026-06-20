@@ -20,6 +20,9 @@ export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(fnm env --use-on-cd --shell zsh)"
 
+# uv: always use uv-managed pythons, never a stray system/homebrew/xcode python
+export UV_PYTHON_PREFERENCE=only-managed
+
 # History
 HISTSIZE=10000
 SAVEHIST=10000

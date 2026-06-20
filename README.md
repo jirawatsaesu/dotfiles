@@ -45,6 +45,7 @@ This runs `chezmoi apply` inside a throwaway Linux container and drops you into 
 
 - [Chezmoi](https://www.chezmoi.io) — dotfiles manager
 - [fnm](https://github.com/Schniz/fnm) — Node.js version manager
+- [uv](https://github.com/astral-sh/uv) — Python version & package manager
 
 **Git**
 

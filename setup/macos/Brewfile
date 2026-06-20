@@ -5,6 +5,7 @@ brew "zsh-syntax-highlighting"
 
 # Version managers
 brew "fnm"
+brew "uv"
 brew "chezmoi"
 
 # Git

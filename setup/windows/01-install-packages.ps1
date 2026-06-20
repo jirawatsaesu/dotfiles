@@ -24,6 +24,7 @@ Install-Pkg "Microsoft.PowerShell"
 
 # Version managers
 Install-Pkg "Schniz.fnm"
+Install-Pkg "astral-sh.uv"
 
 # Git
 Install-Pkg "Git.Git"
