@@ -47,5 +47,6 @@ When working with this repository:
 ## Important Notes
 
 - This is a personal configuration repository - modifications should respect the owner's preferences
+- Setup scripts must install **stable releases only**. Do not use experimental/preview/beta/nightly flags or channels (e.g. `--preview`, `--preview-features`, `--pre`, `--nightly`, `--beta`) — they can break on tool upgrades. If a desired behavior is only available behind such a flag, prefer the stable alternative even if it's less convenient
 - Always keep macOS and Windows in sync: most platform pairs are the same filename, different extension (`.sh` ↔ `.ps1`). Editing one means editing its counterpart in the same commit — except `settings.json.tmpl`, which branches with `{{ if eq .chezmoi.os "windows" }}` instead of having a separate file
 - `.chezmoiignore` platform blocks — if you add an entry for one OS, add the mirrored exclusion for the other
