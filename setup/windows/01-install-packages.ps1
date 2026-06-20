@@ -4,6 +4,12 @@ $ErrorActionPreference = "Stop"
 $failed = @()
 
 function Install-Pkg($id) {
+  # skip if already installed so onchange re-runs don't report false failures
+  winget list --id $id -e --source winget *> $null
+  if ($LASTEXITCODE -eq 0) {
+    Write-Host "[i] $id already installed, skipping."
+    return
+  }
   winget install --id $id -e --source winget --accept-package-agreements --accept-source-agreements
   if ($LASTEXITCODE -ne 0) {
     Write-Warning "[!!] failed to install $id (exit $LASTEXITCODE)"

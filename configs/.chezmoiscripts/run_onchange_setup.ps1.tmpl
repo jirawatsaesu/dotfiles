@@ -12,4 +12,9 @@ function Run-SetupDir($dir) {
 }
 
 Run-SetupDir "windows"
+
+# winget writes new install dirs (e.g. WinGet Links, fnm, uv) to the persisted PATH
+# but not to this process's env — reload it so shared scripts can find those binaries.
+$env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
+
 Run-SetupDir "shared"
