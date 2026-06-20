@@ -34,9 +34,10 @@ Personal preferences for Claude Code across all projects.
 
 - [andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) — coding principles
 
-**Third-party skills** (installed via `npx skills add`, see `setup/shared/02-install-9arm-skills.sh`)
+**Third-party skills** (installed via `npx skills add`, see `setup/shared/02-install-third-party-skills.sh`)
 
-- [9arm-skills](https://github.com/thananon/9arm-skills) — debug-mantra, scrutinize, post-mortem (selected subset of the repo's 6 skills)
+- [9arm-skills](https://github.com/thananon/9arm-skills) — debug-mantra, scrutinize, post-mortem
+- [mattpocock/skills](https://github.com/mattpocock/skills) — grill-me
 
 ## Preferences
 
