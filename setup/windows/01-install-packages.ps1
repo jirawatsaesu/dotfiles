@@ -1,7 +1,42 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+$failed = @()
+
+function Install-Pkg($id) {
+  winget install --id $id -e --accept-package-agreements --accept-source-agreements
+  if ($LASTEXITCODE -ne 0) {
+    Write-Warning "[!!] failed to install $id (exit $LASTEXITCODE)"
+    $script:failed += $id
+  }
+}
+
 Write-Host "[*] installing packages via winget."
-winget install --id Schniz.fnm -e --accept-package-agreements --accept-source-agreements
-winget install --id Microsoft.PowerShell -e --accept-package-agreements --accept-source-agreements
+
+# Shell
+Install-Pkg "Microsoft.PowerShell"
+
+# Version managers
+Install-Pkg "Schniz.fnm"
+
+# Git
+Install-Pkg "Git.Git"
+Install-Pkg "GitHub.cli"
+
+# Dev tools
+Install-Pkg "Microsoft.VisualStudioCode"
+Install-Pkg "Docker.DockerDesktop"
+Install-Pkg "Postman.Postman"
+Install-Pkg "Fork.Fork" # Git GUI
+Install-Pkg "TablePlus.TablePlus"
+Install-Pkg "DBeaver.DBeaver.Community"
+
+# Productivity
+Install-Pkg "Google.Chrome"
+Install-Pkg "Discord.Discord"
+
+if ($failed.Count -gt 0) {
+  Write-Warning "[!!] failed to install: $($failed -join ', ')"
+  exit 1
+}
 Write-Host "[ok] packages installed!"

@@ -30,6 +30,14 @@ Personal preferences for Claude Code across all projects.
 - `/creator:create-ref-sheet` — design concept sheet prompt for AI video preproduction (Stage 1)
 - `/creator:create-storyboard` — storyboard prompts for AI video production (Stage 2)
 
+**Plugins** (installed via Claude Code marketplace)
+
+- [andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) — coding principles
+
+**Third-party skills** (installed via `npx skills add`, see `setup/shared/02-install-9arm-skills.sh`)
+
+- [9arm-skills](https://github.com/thananon/9arm-skills) — debug-mantra, scrutinize, post-mortem (selected subset of the repo's 6 skills)
+
 ## Preferences
 
 - Never commit without being asked explicitly
