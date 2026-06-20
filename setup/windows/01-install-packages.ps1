@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 $failed = @()
 
 function Install-Pkg($id) {
-  winget install --id $id -e --accept-package-agreements --accept-source-agreements
+  winget install --id $id -e --source winget --accept-package-agreements --accept-source-agreements
   if ($LASTEXITCODE -ne 0) {
     Write-Warning "[!!] failed to install $id (exit $LASTEXITCODE)"
     $script:failed += $id
