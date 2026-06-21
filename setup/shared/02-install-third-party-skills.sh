@@ -12,5 +12,5 @@ npx --yes skills add thananon/9arm-skills -s debug-mantra scrutinize post-mortem
 echo "[ok] 9arm-skills installed!"
 
 echo "[*] installing mattpocock-skills."
-npx --yes skills add mattpocock/skills -s grill-me -a claude-code -g -y
+npx --yes skills add mattpocock/skills -s grilling -a claude-code -g -y
 echo "[ok] mattpocock-skills installed!"

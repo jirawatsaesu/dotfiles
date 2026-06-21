@@ -12,5 +12,5 @@ npx --yes skills add thananon/9arm-skills -s debug-mantra scrutinize post-mortem
 Write-Host "[ok] 9arm-skills installed!"
 
 Write-Host "[*] installing mattpocock-skills."
-npx --yes skills add mattpocock/skills -s grill-me -a claude-code -g -y
+npx --yes skills add mattpocock/skills -s grilling -a claude-code -g -y
 Write-Host "[ok] mattpocock-skills installed!"
