@@ -92,7 +92,7 @@ Next Month
 
 ### 4. Save the file
 
-- Output directory: `report/monthly/` relative to the current working directory. Create it if needed (`mkdir -p`).
+- Output directory: `reports/monthly/` relative to the current working directory. Create it if needed (`mkdir -p`).
 - Filename: `{project_lowercase}_monthly-report_{report_month}.txt`
   - `project_lowercase` = project name lowercased, spaces → `-`
 

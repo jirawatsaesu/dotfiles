@@ -99,7 +99,7 @@ Next Week's Plan
 
 ### 4. Save the file
 
-- Output directory: `report/weekly/` relative to the current working directory. Create it if needed (`mkdir -p`).
+- Output directory: `reports/weekly/` relative to the current working directory. Create it if needed (`mkdir -p`).
 - Filename: `{project_lowercase}_weekly-report_{start_date}-{end_date}.txt`
   - `project_lowercase` = project name lowercased, spaces → `-`
 

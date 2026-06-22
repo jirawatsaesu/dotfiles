@@ -4,9 +4,9 @@ description: Generate a daily meeting report for Product Owner from ClickUp time
 allowed-tools: [mcp__clickup__clickup_get_time_entries, mcp__clickup__clickup_find_member_by_name, Bash, Write]
 ---
 
-# /daily-meeting
+# /daily-report
 
-Generate a Daily Meeting report to share with the Product Owner.
+Generate a daily report to share with the Product Owner.
 
 ## Arguments
 
@@ -71,7 +71,7 @@ Use this template — all dates in `YYYY-MM-DD` format:
 
 ```
 ================================================
-{project} | Daily Meeting | {full_name} | {meeting_date}
+{project} | Daily Report | {full_name} | {meeting_date}
 ================================================
 
 {section_label} ({report_date})
@@ -97,8 +97,8 @@ Today's Plan ({meeting_date})
 
 ### 4. Save the file
 
-- Output directory: `report/daily/` relative to the current working directory. Create it if needed (`mkdir -p`).
-- Filename: `{project_lowercase}_daily-meeting_{report_date}.txt`
+- Output directory: `reports/daily/` relative to the current working directory. Create it if needed (`mkdir -p`).
+- Filename: `{project_lowercase}_daily-report_{report_date}.txt`
   - `project_lowercase` = project name lowercased, spaces → `-`
 
 ### 5. Open the file
