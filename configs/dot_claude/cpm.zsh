@@ -1,6 +1,24 @@
 # Claude Profile Manager
 _CPM_PROFILES_DIR="$HOME/.claude-profiles"
 
+_cpm_ensure_mcp() {
+  local dir="$1" name="$2"; shift 2
+  CLAUDE_CONFIG_DIR="$dir" claude mcp get "$name" >/dev/null 2>&1 && return
+  CLAUDE_CONFIG_DIR="$dir" claude mcp add -s user "$name" "$@"
+}
+
+# MCP servers differ per profile — add a case below for any profile that needs them.
+_cpm_provision_mcp() {
+  local dir="$1" name="$2"
+  case "$name" in
+    coraline)
+      _cpm_ensure_mcp "$dir" chrome-devtools -- npx chrome-devtools-mcp@latest
+      _cpm_ensure_mcp "$dir" clickup --transport http https://mcp.clickup.com/mcp
+      _cpm_ensure_mcp "$dir" figma --transport http https://mcp.figma.com/mcp
+      ;;
+  esac
+}
+
 _cpm_setup() {
   local name="${1:?usage: cpm setup <name>}"
   local dir="$_CPM_PROFILES_DIR/$name"
@@ -11,6 +29,7 @@ _cpm_setup() {
   for d in commands skills agents plugins; do
     [[ -d "$HOME/.claude/$d" ]] && ln -sfn "$HOME/.claude/$d" "$dir/$d"
   done
+  _cpm_provision_mcp "$dir" "$name"
   print "Profile '$name' created. Starting authentication..."
   CLAUDE_CONFIG_DIR="$dir" CLAUDE_PROFILE="$name" claude
 }

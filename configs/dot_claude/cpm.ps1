@@ -1,6 +1,27 @@
 # Claude Profile Manager
 $env:CPM_PROFILES_DIR = "$env:USERPROFILE\.claude-profiles"
 
+function _cpm_ensure_mcp {
+    param([string]$Dir, [string]$Name, [string[]]$Rest)
+    $env:CLAUDE_CONFIG_DIR = $Dir
+    try {
+        claude mcp get $Name *> $null
+        if ($LASTEXITCODE -ne 0) { claude mcp add -s user $Name @Rest }
+    } finally { $env:CLAUDE_CONFIG_DIR = $null }
+}
+
+# MCP servers differ per profile — add a case below for any profile that needs them.
+function _cpm_provision_mcp {
+    param([string]$Dir, [string]$Name)
+    switch ($Name) {
+        'coraline' {
+            _cpm_ensure_mcp $Dir 'chrome-devtools' @('--', 'npx', 'chrome-devtools-mcp@latest')
+            _cpm_ensure_mcp $Dir 'clickup' @('--transport', 'http', 'https://mcp.clickup.com/mcp')
+            _cpm_ensure_mcp $Dir 'figma' @('--transport', 'http', 'https://mcp.figma.com/mcp')
+        }
+    }
+}
+
 function _cpm_setup {
     param([Parameter(Mandatory)][string]$Name)
     $dir = "$env:CPM_PROFILES_DIR\$Name"
@@ -18,6 +39,7 @@ function _cpm_setup {
             New-Item -ItemType Junction -Path $link -Target $src | Out-Null
         }
     }
+    _cpm_provision_mcp $dir $Name
     Write-Host "Profile '$Name' created. Starting authentication..."
     $prevDir = $env:CLAUDE_CONFIG_DIR; $prevProf = $env:CLAUDE_PROFILE
     $env:CLAUDE_CONFIG_DIR = $dir; $env:CLAUDE_PROFILE = $Name
