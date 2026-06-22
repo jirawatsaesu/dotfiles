@@ -17,7 +17,7 @@ brew "wget"
 
 # Dev tools
 cask "visual-studio-code"
-cask "docker"
+cask "docker-desktop"
 cask "postman"
 cask "fork"            # Git GUI
 cask "tableplus"
