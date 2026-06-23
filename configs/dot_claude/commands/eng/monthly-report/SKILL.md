@@ -67,20 +67,22 @@ Use this template — dates in `YYYY-MM-DD` format:
 
 Summary — {report_month}
 ----------------------------------------
-{2–3 sentence high-level summary of the month: what was shipped, overall progress, any notable outcomes}
+{2–3 sentence high-level summary of the month, in Thai: what was shipped, overall progress, any notable outcomes}
 
 Delivered
 ----------------------------------------
-- {Theme}: {outcome statement — what was built/fixed and why it matters}
+- {Theme}: {outcome statement, in Thai — what was built/fixed and why it matters}
 
 In Progress
 ----------------------------------------
-- {Theme}: {current state and expected completion}
+- {Theme}: {current state and expected completion, in Thai}
 
 Next Month
 ----------------------------------------
 - {Theme}: {planned focus or goal}
 ```
+
+**Description language:** write the Summary and each theme statement under Delivered/In Progress in **Thai** (technical terms/names can stay in English inline, as naturally written). Everything else (header, section labels, Next Month) stays in English.
 
 **Tone:** C-level audience — no technical jargon, no ticket names, no code identifiers. Focus on business outcomes, user impact, and delivery velocity. Each line should answer "so what?" not "what was done technically."
 

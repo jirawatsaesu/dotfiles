@@ -78,13 +78,15 @@ Use this template — all dates in `YYYY-MM-DD` format:
 ----------------------------------------
 
 - {task name}
-  {one-line description of what was actually done}
+  {description of what was actually done, in Thai}
   Status: {status label}
 
 Today's Plan ({meeting_date})
 ----------------------------------------
 - Continue working on: {task name short}
 ```
+
+**Description language:** write the description in **Thai** (technical terms/names can stay in English inline, as naturally written). Everything else in the report (header, section labels, status labels, plan section) stays in English.
 
 **Status label mapping:**
 - `in progress` → `In Progress`

@@ -76,20 +76,22 @@ Use this template — all dates in `YYYY-MM-DD` format:
 
 [Done]
 - {task name}
-  {technical description of what was done and how}
+  {technical description of what was done and how, in Thai}
 
 [In Review]
 - {task name}
-  {technical description of what was done and what's pending review}
+  {technical description of what was done and what's pending review, in Thai}
 
 [In Progress]
 - {task name}
-  {technical description of current state and what remains}
+  {technical description of current state and what remains, in Thai}
 
 Next Week's Plan
 ----------------------------------------
 - {task name short} — {one-line intent}
 ```
+
+**Description language:** write each task description in **Thai** (technical terms/names can stay in English inline, as naturally written). Everything else (header, section labels, status headers, Next Week's Plan) stays in English.
 
 **Tone:** engineer-to-engineer. Technical descriptions are encouraged — include what approach was taken, what was fixed, what remains. Keep each description to 1–2 lines max.
 
