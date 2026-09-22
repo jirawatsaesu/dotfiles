@@ -8,7 +8,7 @@ fnm use --install-if-missing lts-latest
 Set-Location $HOME
 
 # `skills add` always re-clones and overwrites, even if already installed, so check first
-$installedSkills = npx --yes skills list -g 2>$null | Out-String
+$installedSkills = npx --yes skills list -g | Out-String
 
 function Test-SkillsInstalled {
   param([string[]]$Skills)
