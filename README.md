@@ -12,6 +12,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply jirawatsaesu/dotfiles
 
 **Windows**
 
+Docker Desktop needs hardware virtualization. Before setup, enter BIOS/UEFI and enable **SVM Mode** (AMD) or **Intel Virtualization Technology** (Intel). Reboot after setup so WSL takes effect.
+
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
 winget install twpayne.chezmoi

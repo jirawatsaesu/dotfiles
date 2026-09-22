@@ -17,6 +17,25 @@ function Install-Pkg($id) {
   }
 }
 
+function Install-Wsl {
+  wsl --version *> $null
+  if ($LASTEXITCODE -eq 0) {
+    Write-Host "[i] WSL already installed, skipping."
+    return
+  }
+  # Docker Desktop's WSL 2 backend needs the WSL kernel, not a distro
+  wsl --install --no-distribution
+  if ($LASTEXITCODE -ne 0) {
+    Write-Warning "[!!] failed to install WSL (exit $LASTEXITCODE) - is virtualization enabled in BIOS/UEFI?"
+    $script:failed += "WSL"
+  } else {
+    Write-Host "[i] WSL installed - reboot before starting Docker Desktop."
+  }
+}
+
+Write-Host "[*] installing WSL."
+Install-Wsl
+
 Write-Host "[*] installing packages via winget."
 
 # Shell
