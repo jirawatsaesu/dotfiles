@@ -13,7 +13,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply jirawatsaesu/dotfiles
 **Windows**
 
 ```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
 winget install twpayne.chezmoi
+# reopen the terminal so the new PATH from winget takes effect
 chezmoi init --apply jirawatsaesu/dotfiles
 ```
 
