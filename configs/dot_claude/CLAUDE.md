@@ -37,7 +37,7 @@ Personal preferences for Claude Code across all projects.
 **Third-party skills** (installed via `npx skills add`, see `setup/shared/02-install-third-party-skills.sh`)
 
 - [9arm-skills](https://github.com/thananon/9arm-skills) — debug-mantra, scrutinize, post-mortem
-- [mattpocock/skills](https://github.com/mattpocock/skills) — grill-me
+- [mattpocock/skills](https://github.com/mattpocock/skills) — grilling
 
 ## Preferences
 
